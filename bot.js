@@ -31,7 +31,7 @@ client.on('ready', () => {
   console.log('╚[════════════════════════════════════]╝')
   console.log('')
   console.log('╔[════════════]╗')
-  console.log(' Bot Is Online')
+  console.log(' Bot Is Idle')
   console.log('╚[════════════]╝')
   console.log('')
   console.log('')
