@@ -121,12 +121,12 @@ client.on('message', function(message) {
     const args = message.content.split(' ').slice(1).join(' ');
  
     if (mess.startsWith(prefix + 'play')) {
-        if (!message.member.voiceChannel) return message.reply('** You Are Not In VoiceChannel **');
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
         // if user is not insert the URL or song title
         if (args.length == 0) {
             let play_info = new Discord.RichEmbed()
                 .setAuthor(client.user.username, client.user.avatarURL)
-                .setDescription('**please put the name of the song or link of it**')
+                .setDescription('*** يرجى وضع اسم الأغنية أو رابطها ***')
             message.channel.sendEmbed(play_info)
             return;
         }
@@ -136,7 +136,7 @@ client.on('message', function(message) {
                 fetchVideoInfo(id, function(err, videoInfo) {
                     if (err) throw new Error(err);
                     let play_info = new Discord.RichEmbed()
-                        .setAuthor("added to the waiting list", message.author.avatarURL)
+                        .setAuthor("أضيف إلى قائمة الانتظار", message.author.avatarURL)
                         .setDescription(`**${videoInfo.title}**`)
                         .setColor("RANDOM")
                         .setFooter('Requested By:' + message.author.tag)
@@ -159,7 +159,7 @@ client.on('message', function(message) {
                 fetchVideoInfo(id, function(err, videoInfo) {
                     if (err) throw new Error(err);
                     let play_info = new Discord.RichEmbed()
-                        .setAuthor(`Added To Queue`, message.author.avatarURL)
+                        .setAuthor(`بطلب من`, message.author.avatarURL)
                         .setDescription(`**${videoInfo.title}**`)
                         .setColor("RANDOM")
                         .setFooter('Requested by: ' + message.author.tag)
@@ -171,15 +171,15 @@ client.on('message', function(message) {
         }
     }
     else if (mess.startsWith(prefix + 'skip')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
-        message.reply(':gear: **Song has been skipped**').then(() => {
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
+        message.reply(':gear: *** تم التخطي ***').then(() => {
             skip_song(message);
             var server = server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.end();
         });
     }
     else if (message.content.startsWith(prefix + 'vol')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
         // console.log(args)
         if (args > 100) return message.reply(':x: **100**');
         if (args < 1) return message.reply(":x: **1**");
@@ -187,25 +187,25 @@ client.on('message', function(message) {
         message.channel.sendMessage(`Volume Updated To: **${dispatcher.volume*50}**`);
     }
     else if (mess.startsWith(prefix + 'pause')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
-        message.reply(':gear: **the sound is currently Paused**').then(() => {
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
+        message.reply(':gear: *** تم الايقاف مؤقتا ***').then(() => {
             dispatcher.pause();
         });
     }
     else if (mess.startsWith(prefix + 'unpause')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
-        message.reply(':gear: **You have replayed the music**').then(() => {
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
+        message.reply(':gear: *** تم اعادة التشغيل ***').then(() => {
             dispatcher.resume();
         });
     }
     else if (mess.startsWith(prefix + 'stop')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
-        message.reply(':name_badge: **the music has been stopped,i hope you did enjoy!**');
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
+        message.reply(':name_badge: *** تم الايقاف ***');
         var server = server = servers[message.guild.id];
         if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
     else if (mess.startsWith(prefix + 'join')) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
         message.member.voiceChannel.join().then(message.react('✅'));
     }
     else if (mess.startsWith(prefix + 'play')) {
@@ -213,7 +213,7 @@ client.on('message', function(message) {
             add_to_queue(id);
             fetchVideoInfo(id, function(err, videoInfo) {
                 if (err) throw new Error(err);
-                if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
+                if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
                 if (isPlaying == false) return message.reply(':x:');
                 let playing_now_info = new Discord.RichEmbed()
                     .setAuthor(client.user.username, client.user.avatarURL)
@@ -232,7 +232,7 @@ client.on('message', function(message) {
     }
  
     function skip_song(message) {
-        if (!message.member.voiceChannel) return message.reply('**Sorry,youre not on a voice channel**');
+        if (!message.member.voiceChannel) return message.reply('*** عفوا ,انت غير موجود في روم صوتي ***');
         dispatcher.end();
     }
  
