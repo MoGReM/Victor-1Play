@@ -306,7 +306,7 @@ client.on('message', function(message) {
  client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`in ${client.guilds.size} servers `)
-    console.log(`[user] ${client.users.size}`)
+    console.log(`[Victor | 1Play] ${client.users.size}`)
     client.user.setStatus("Do Not Disturbe")
 });
  
